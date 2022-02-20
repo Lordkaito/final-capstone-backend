@@ -10,6 +10,8 @@ class Api::V1::ReservationsController < ApplicationController
 
   # GET /reservations/1
   def show
+    return reservation_not_found unless @reservation = Reservation.find_by(id: params[:id])
+
     render json: @reservation
   end
 
@@ -42,11 +44,15 @@ class Api::V1::ReservationsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_reservation
-    @reservation = Reservation.find(params[:id])
+    @reservation = Reservation.find_by(id: params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def reservation_params
     params.require(:reservation).permit(:username, :car_id)
+  end
+
+  def reservation_not_found
+    render json: { message: 'Reservation not found' }, status: :not_found
   end
 end
