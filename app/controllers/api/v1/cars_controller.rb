@@ -13,7 +13,11 @@ class Api::V1::CarsController < ApplicationController
   def create
     @car = Car.create!(car_params)
 
+    return missing_params unless @car.is_valid?
+
     render json: @car
+  # rescue
+  #   error(:unprocessable_entity, 'Invalid car', 'Please fill all the required parameters.')
   end
 
   private
@@ -23,7 +27,11 @@ class Api::V1::CarsController < ApplicationController
   end
 
   def car_not_found
-    render json: { message: 'Car not found' }, status: :not_found
+    render json: { error: 'Car not found' }, status: :not_found
+  end
+
+  def missing_params
+    render json: { error: "Please fill all the required parameters." }, status: :unprocessable_entity
   end
 
 end

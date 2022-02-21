@@ -17,13 +17,13 @@ class Api::V1::ReservationsController < ApplicationController
 
   # POST /reservations
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = Reservation.create!(reservation_params)
 
-    if @reservation.save
-      render json: @reservation, status: :created, location: @reservation
-    else
-      render json: @reservation.errors, status: :unprocessable_entity
-    end
+    # render json: @reservation
+
+    return missing_params unless @reservation.is_valid?
+
+      render json: @reservation
   end
 
   # PATCH/PUT /reservations/1
@@ -53,6 +53,10 @@ class Api::V1::ReservationsController < ApplicationController
   end
 
   def reservation_not_found
-    render json: { message: 'Reservation not found' }, status: :not_found
+    render json: { error: 'Reservation not found' }, status: :not_found
+  end
+
+  def missing_params
+    render json: { error: "Invalid user" }, status: :unprocessable_entity
   end
 end
