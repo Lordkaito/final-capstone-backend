@@ -10,7 +10,8 @@ class Api::V1::ReservationsController < ApplicationController
 
   # GET /reservations/1
   def show
-    return reservation_not_found unless @reservation = Reservation.find_by(id: params[:id])
+    @reservation = Reservation.find_by(id: params[:id])
+    return reservation_not_found unless @reservation.present?
 
     render json: @reservation
   end
@@ -23,7 +24,7 @@ class Api::V1::ReservationsController < ApplicationController
 
     return missing_params unless @reservation.is_valid?
 
-      render json: @reservation
+    render json: @reservation
   end
 
   # PATCH/PUT /reservations/1
@@ -57,6 +58,6 @@ class Api::V1::ReservationsController < ApplicationController
   end
 
   def missing_params
-    render json: { error: "Invalid user" }, status: :unprocessable_entity
+    render json: { error: 'Invalid user' }, status: :unprocessable_entity
   end
 end

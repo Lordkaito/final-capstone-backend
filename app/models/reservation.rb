@@ -5,6 +5,7 @@ class Reservation < ApplicationRecord
 
   def is_valid?
     return true unless username.empty?
+
     false
   end
 end

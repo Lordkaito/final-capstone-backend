@@ -4,6 +4,7 @@ class Car < ApplicationRecord
   # validates :brand, presence: true
   def is_valid?
     return true unless price <= 0 || brand.empty? || model.empty? || image.empty?
+
     false
   end
 end

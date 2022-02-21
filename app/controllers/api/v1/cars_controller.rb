@@ -5,7 +5,8 @@ class Api::V1::CarsController < ApplicationController
   end
 
   def show
-    return car_not_found unless @car = Car.find_by(id: params[:id])
+    @car = Car.find_by(id: params[:id])
+    return car_not_found unless @car.present?
 
     render json: @car
   end
@@ -16,8 +17,8 @@ class Api::V1::CarsController < ApplicationController
     return missing_params unless @car.is_valid?
 
     render json: @car
-  # rescue
-  #   error(:unprocessable_entity, 'Invalid car', 'Please fill all the required parameters.')
+    # rescue
+    #   error(:unprocessable_entity, 'Invalid car', 'Please fill all the required parameters.')
   end
 
   private
@@ -31,7 +32,6 @@ class Api::V1::CarsController < ApplicationController
   end
 
   def missing_params
-    render json: { error: "Please fill all the required parameters." }, status: :unprocessable_entity
+    render json: { error: 'Please fill all the required parameters.' }, status: :unprocessable_entity
   end
-
 end
