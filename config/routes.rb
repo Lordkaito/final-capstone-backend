@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :cars
+      get '/all_reservations/', to: 'reservations#all_reservations'
       resources :reservations
     end
   end
