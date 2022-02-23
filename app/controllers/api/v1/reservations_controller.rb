@@ -3,12 +3,6 @@ class Api::V1::ReservationsController < ApplicationController
 
   # GET /reservations
   def index
-    @reservations = Reservation.all
-
-    render json: @reservations
-  end
-
-  def all_reservations
     params.require(:reservation).permit(:username)
     @user_name = params[:username]
 
@@ -22,11 +16,9 @@ class Api::V1::ReservationsController < ApplicationController
 
   # GET /reservations/1
   def show
-    if @reservation
-      render json: @reservation
-    else
-      render json: { message: 'Not found' }
-    end
+    return render json: { error: 'Not found' } unless @reservation
+
+    render json: @reservation
   end
 
   # POST /reservations
