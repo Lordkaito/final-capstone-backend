@@ -3,13 +3,21 @@ class Api::V1::ReservationsController < ApplicationController
 
   # GET /reservations
   def index
-    @reservations = Reservation.all
+    params.require(:reservation).permit(:username)
+    @user_name = params[:username]
 
-    render json: @reservations
+    if @user_name
+      @reservations = Reservation.includes(:car).where(username: @user_name)
+      render json: @reservations
+    else
+      render json: @reservations.errors
+    end
   end
 
   # GET /reservations/1
   def show
+    return render json: { error: 'Not found' } unless @reservation
+
     render json: @reservation
   end
 
@@ -42,11 +50,11 @@ class Api::V1::ReservationsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_reservation
-    @reservation = Reservation.find(params[:id])
+    @reservation = Reservation.includes(:car).find_by(id: params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def reservation_params
-    params.require(:reservation).permit(:username, :car_id)
+    params.require(:reservation).permit(:username, :car_id, :reservation_date, :city)
   end
 end
