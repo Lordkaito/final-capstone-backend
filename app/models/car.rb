@@ -1,12 +1,7 @@
 class Car < ApplicationRecord
-  has_many :reservations
-  # validates :price, presence: true
-  # validates :brand, presence: true
-  def is_valid?
-    return true unless price <= 0 || brand.empty? || model.empty? || image.empty?
-
-    false
-  end
+  has_many :reservations, dependent: :destroy
+  validates :price, presence: true
+  validates :brand, presence: true
+  validates :model, presence: true
+  validates :image, presence: true
 end
-
-Car.create!(price: 100, brand: 'Toyota', model: 'Corolla', image: 'imageurl')
