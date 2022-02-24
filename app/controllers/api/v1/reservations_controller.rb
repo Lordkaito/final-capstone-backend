@@ -22,8 +22,10 @@ class Api::V1::ReservationsController < ApplicationController
   end
 
   def update
-
-    return render json: @reservation.errors, status: :unprocessable_entity unless @reservation.update(reservation_params)
+    unless @reservation.update(reservation_params)
+      render json: @reservation.errors,
+             status: :unprocessable_entity
+    end
   end
 
   def destroy

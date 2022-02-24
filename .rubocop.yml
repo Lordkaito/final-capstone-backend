@@ -60,3 +60,5 @@ Style/HashTransformValues:
   Enabled: false
 Naming/PredicateName:
   Enabled: false
+Style/GuardClause:
+  Enabled: false
