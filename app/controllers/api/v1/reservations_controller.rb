@@ -1,7 +1,6 @@
 class Api::V1::ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[show update destroy]
 
-  # GET /reservations
   def index
     params.require(:reservation).permit(:username)
     @user_name = params[:username]
@@ -14,34 +13,27 @@ class Api::V1::ReservationsController < ApplicationController
     end
   end
 
-  # GET /reservations/1
   def show
-    return render json: { error: 'Not found' } unless @reservation
+    return reservation_not_found unless @reservation
 
     render json: @reservation
   end
 
-  # POST /reservations
   def create
     @reservation = Reservation.new(reservation_params)
 
-    if @reservation.save
-      render json: @reservation, status: :created, location: @reservation
-    else
-      render json: @reservation.errors, status: :unprocessable_entity
-    end
+    return render json: @reservation.errors, status: :unprocessable_entity unless @reservation.save
+
+    render json: @reservation, status: :created, location: @reservation
   end
 
-  # PATCH/PUT /reservations/1
   def update
-    if @reservation.update(reservation_params)
-      render json: @reservation
-    else
-      render json: @reservation.errors, status: :unprocessable_entity
+    unless @reservation.update(reservation_params)
+      render json: @reservation.errors,
+             status: :unprocessable_entity
     end
   end
 
-  # DELETE /reservations/1
   def destroy
     @reservation.destroy
   end
@@ -56,5 +48,9 @@ class Api::V1::ReservationsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def reservation_params
     params.require(:reservation).permit(:username, :car_id, :reservation_date, :city)
+  end
+
+  def reservation_not_found
+    render json: { error: 'Reservation not found' }, status: :not_found
   end
 end
