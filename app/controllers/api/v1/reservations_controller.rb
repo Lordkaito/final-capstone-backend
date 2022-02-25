@@ -2,9 +2,15 @@ class Api::V1::ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[show update destroy]
 
   def index
-    @reservations = Reservation.all
+    params.require(:reservation).permit(:username)
+    @user_name = params[:username]
 
-    render json: @reservations
+    if @user_name
+      @reservations = Reservation.includes(:car).where(username: @user_name)
+      render json: @reservations
+    else
+      render json: @reservations.errors
+    end
   end
 
   def show
