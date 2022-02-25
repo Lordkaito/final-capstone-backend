@@ -24,7 +24,7 @@ class Api::V1::ReservationsController < ApplicationController
 
     return render json: @reservation.errors, status: :unprocessable_entity unless @reservation.save
 
-    render json: @reservation, status: :created, location: @reservation
+    render json: @reservation, status: :created
   end
 
   def update

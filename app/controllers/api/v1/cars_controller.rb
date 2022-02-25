@@ -18,7 +18,7 @@ class Api::V1::CarsController < ApplicationController
 
     return render json: @car.errors, status: :unprocessable_entity unless @car.save
 
-    render json: @car, status: :created, location: @car
+    render json: @car, status: :created
   end
 
   def update
@@ -36,7 +36,7 @@ class Api::V1::CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:price, :brand, :model, :image)
+    params.require(:car).permit(:price, :brand, :model, :image, :description)
   end
 
   def car_not_found
