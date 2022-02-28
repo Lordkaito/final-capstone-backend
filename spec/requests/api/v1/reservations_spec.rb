@@ -1,12 +1,10 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/reservations', type: :request do
-
+  # rubocop:disable Metrics/BlockLength
   path '/api/v1/reservations' do
-
     get('list reservations') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -28,9 +26,9 @@ RSpec.describe 'api/v1/reservations', type: :request do
             car_id: { type: :integer },
             reservation_date: { type: :string, format: :datetime },
             city: { type: :string },
-            to_date: { type: :string, format: :datetime },
+            to_date: { type: :string, format: :datetime }
           },
-          required: [ 'username', 'car_id', 'reservation_date',  'city', 'to_date']
+          required: %w[username car_id reservation_date city to_date]
         }
 
         after do |example|
@@ -44,6 +42,7 @@ RSpec.describe 'api/v1/reservations', type: :request do
       end
     end
   end
+  # rubocop:enable Metrics/BlockLength
 
   path '/api/v1/reservations/?username={username}' do
     parameter name: 'username', in: :path, type: :string, description: 'username'
@@ -64,6 +63,7 @@ RSpec.describe 'api/v1/reservations', type: :request do
     end
   end
 
+  # rubocop:disable Metrics/BlockLength
   path '/api/v1/reservations/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
@@ -93,7 +93,7 @@ RSpec.describe 'api/v1/reservations', type: :request do
             car_id: { type: :integer },
             reservation_date: { type: :string, format: :datetime },
             city: { type: :string },
-            to_date: { type: :string, format: :datetime },
+            to_date: { type: :string, format: :datetime }
           }
         }
         let(:id) { '123' }
@@ -119,9 +119,9 @@ RSpec.describe 'api/v1/reservations', type: :request do
             car_id: { type: :integer },
             reservation_date: { type: :string, format: :datetime },
             city: { type: :string },
-            to_date: { type: :string, format: :datetime },
+            to_date: { type: :string, format: :datetime }
           },
-          required: [ 'username', 'car_id', 'reservation_date',  'city', 'to_date']
+          required: %w[username car_id reservation_date city to_date]
         }
         let(:id) { '123' }
 
@@ -151,4 +151,5 @@ RSpec.describe 'api/v1/reservations', type: :request do
       end
     end
   end
+  # rubocop:enable Metrics/BlockLength
 end

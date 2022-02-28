@@ -29,7 +29,7 @@ class Api::V1::ReservationsController < ApplicationController
 
   def update
     if @reservation.update(reservation_params)
-      render json: { message: 'Reservation Update Successful'}
+      render json: { message: 'Reservation Update Successful' }
     else
       render json: @reservation.errors,
              status: :unprocessable_entity
@@ -39,7 +39,7 @@ class Api::V1::ReservationsController < ApplicationController
   def destroy
     if @reservation.destroy
       render json: { message: 'Reservation deleted' }
-    else 
+    else
       render json: { error: 'Reservation could not be deleted' }
     end
   end
