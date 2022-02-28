@@ -132,6 +132,5 @@ RSpec.describe 'api/v1/cars', type: :request do
       end
     end
   end
-  # rubocop:enable Metrics/BlockLengthsymbolize_names: true)
   # rubocop:enable Metrics/BlockLength
 end
