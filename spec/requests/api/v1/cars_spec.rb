@@ -116,6 +116,21 @@ RSpec.describe 'api/v1/cars', type: :request do
         run_test!
       end
     end
+
+    delete('delete car') do
+      response(200, 'successful') do
+        let(:id) { '7' }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+    end
   end
   # rubocop:enable Metrics/BlockLengthsymbolize_names: true)
   # rubocop:enable Metrics/BlockLength

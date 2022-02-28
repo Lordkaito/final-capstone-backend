@@ -101,6 +101,11 @@ paths:
               - model
               - image
               - description
+    delete:
+      summary: delete car
+      responses:
+        '200':
+          description: successful
   "/api/v1/reservations":
     get:
       summary: list reservations
