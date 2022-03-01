@@ -30,6 +30,11 @@ P.S : if you are coming from a previous version, you might want to delete the da
 - GitHub: [@see-why](https://github.com/see-why)
 - LinkedIn: [C.Iyadi](https://www.linkedin.com/in/cyril-iyadi/)
 
+👤 **Isai Cespedes**
+
+- GitHub: [@Lordkaito](https://github.com/Lordkaito)
+- LinkedIn: [Isai C.](https://www.linkedin.com/in/isaicespedes/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
