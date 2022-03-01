@@ -2,14 +2,14 @@ class Api::V1::ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[show update destroy]
 
   def index
+    params.require(:reservation).permit(:username)
     @user_name = params[:username]
 
     if @user_name
       @reservations = Reservation.includes(:car).where(username: @user_name)
       render json: @reservations
     else
-      @reservation = Reservation.all
-      render json: @reservation
+      render json: @reservations.errors
     end
   end
 
@@ -28,20 +28,14 @@ class Api::V1::ReservationsController < ApplicationController
   end
 
   def update
-    if @reservation.update(reservation_params)
-      render json: { message: 'Reservation Update Successful' }
-    else
+    unless @reservation.update(reservation_params)
       render json: @reservation.errors,
              status: :unprocessable_entity
     end
   end
 
   def destroy
-    if @reservation.destroy
-      render json: { message: 'Reservation deleted' }
-    else
-      render json: { error: 'Reservation could not be deleted' }
-    end
+    @reservation.destroy
   end
 
   private
@@ -53,7 +47,7 @@ class Api::V1::ReservationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def reservation_params
-    params.require(:reservation).permit(:username, :car_id, :reservation_date, :city, :to_date)
+    params.require(:reservation).permit(:username, :car_id, :reservation_date, :city)
   end
 
   def reservation_not_found

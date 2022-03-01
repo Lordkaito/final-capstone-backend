@@ -4,6 +4,108 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/cars":
+    get:
+      summary: list cars
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create cars
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: integer
+                brand:
+                  type: string
+                model:
+                  type: string
+                image:
+                  type: string
+                description:
+                  type: string
+              required:
+              - price
+              - brand
+              - model
+              - image
+              - description
+  "/api/v1/cars/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show car
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update car
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: integer
+                brand:
+                  type: string
+                model:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+    put:
+      summary: update car
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: integer
+                brand:
+                  type: string
+                model:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+              required:
+              - price
+              - brand
+              - model
+              - image
+              - description
+    delete:
+      summary: delete car
+      responses:
+        '200':
+          description: successful
   "/api/v1/reservations":
     get:
       summary: list reservations
