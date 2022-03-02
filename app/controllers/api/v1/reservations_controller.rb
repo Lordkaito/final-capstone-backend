@@ -4,13 +4,12 @@ class Api::V1::ReservationsController < ApplicationController
   def index
     @user_name = params[:username]
 
-    if @user_name
-      @reservations = Reservation.includes(:car).where(username: @user_name)
-      render json: @reservations
-    else
-      @reservation = Reservation.all
-      render json: @reservation
-    end
+    @reservations = if @user_name
+                      Reservation.includes(:car).where(username: @user_name)
+                    else
+                      Reservation.all
+                    end
+    render json: @reservations
   end
 
   def show

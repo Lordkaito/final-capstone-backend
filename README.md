@@ -3,7 +3,7 @@
 An api with end points to create/view/delete/update Car and Reservation Entities.
 
 # Live link for API
-https://afternoon-harbor-85228.herokuapp.com/
+ [Click Me!](https://afternoon-harbor-85228.herokuapp.com/)
 ## Built With
 - Ruby version 3.0.1
 - RoR version 7.0.2
@@ -22,6 +22,7 @@ To do the same but with reservations call this endpoint:
 
 Both endpoints will return a JSON response with the following format:
 
+```
 For cars:
 {
   "id": 1,
@@ -45,6 +46,7 @@ For reservations:
   "reservation_date": "2020-01-01 00:00:00",
   "to_date": "2020-01-01 00:00:00"
 }
+```
 
 You can view a specific car by calling this endpoint:
 
@@ -54,7 +56,7 @@ Same goes for reservations:
 
 /api/v1/reservations/:id
 
-**If you need further information about the endpoints you can view the documentation navigating to api-docs. You can do this by navigating to http://<domain>:<port>/api-docs. Where <domain> is the domain of your server and <port> is the port of your server.**
+**If you need further information about the endpoints you can view the documentation navigating to api-docs. You can do this by navigating to http://`domain`:`port`/api-docs. Where `domain` is the domain of your server and `port` is the port of your server.**
 For example, if your server is running on port 3000, you can navigate to http://localhost:3000/api-docs.
 There you will see a list of all endpoints and their descriptions.
 
