@@ -9,6 +9,55 @@ https://afternoon-harbor-85228.herokuapp.com/
 - RoR version 7.0.2
 ## Getting Started
 
+The API will receive POST requests to create cars and reservations and GET requests to view cars and reservations.
+The base URL is: https://afternoon-harbor-85228.herokuapp.com/
+
+If you want to view cars you can call this endpoint:
+
+/api/v1/cars
+
+To do the same but with reservations call this endpoint:
+
+/api/v1/reservations
+
+Both endpoints will return a JSON response with the following format:
+
+For cars:
+{
+  "id": 1,
+  "price": 100,
+  "brand": "Toyota",
+  "model": "Corolla",
+  "image": "image_url",
+  "created_at": "2019-01-01T00:00:00.000Z",
+  "updated_at": "2019-01-01T00:00:00.000Z",
+  "description": "This is a car"
+}
+
+For reservations:
+{
+  "id": 1,
+  "username": "John Doe",
+  "car_id": 1,
+  "created_at": "2019-01-01T00:00:00.000Z",
+  "updated_at": "2019-01-01T00:00:00.000Z",
+  "city": "Denver",
+  "reservation_date": "2020-01-01 00:00:00",
+  "to_date": "2020-01-01 00:00:00"
+}
+
+You can view a specific car by calling this endpoint:
+
+/api/v1/cars/:id
+
+Same goes for reservations:
+
+/api/v1/reservations/:id
+
+If you need further information about the endpoints you can view the documentation navigating to api-docs. You can do this by navigating to http://<domain>:<port>/api-docs where <domain> is the domain of your server and <port> is the port of your server.
+For example, if your server is running on port 3000, you can navigate to http://localhost:3000/api-docs.
+There you will see a list of all endpoints and their descriptions.
+
 **The project comes shipped with linters config for ruby, so ensure you have Rubocop**
 **installed in your local environment**
 
