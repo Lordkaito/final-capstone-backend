@@ -54,7 +54,7 @@ Same goes for reservations:
 
 /api/v1/reservations/:id
 
-If you need further information about the endpoints you can view the documentation navigating to api-docs. You can do this by navigating to http://<domain>:<port>/api-docs where <domain> is the domain of your server and <port> is the port of your server.
+**If you need further information about the endpoints you can view the documentation navigating to api-docs. You can do this by navigating to http://<domain>:<port>/api-docs. Where <domain> is the domain of your server and <port> is the port of your server.**
 For example, if your server is running on port 3000, you can navigate to http://localhost:3000/api-docs.
 There you will see a list of all endpoints and their descriptions.
 
