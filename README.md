@@ -4,7 +4,7 @@ An api with end points to create/view/delete/update Car and Reservation Entities
 
 # Live link for API
 
- [Click Me!](https://afternoon-harbor-85228.herokuapp.com/)
+ [Click Me!](https://afternoon-harbor-85228.herokuapp.com/api-docs/index.html)
 ## Built With
 
 - Ruby version 3.0.1
