@@ -92,6 +92,7 @@ P.S : if you are coming from a previous version, you might want to delete the da
 ## Kanban Board
 
 Here you will see some images of our Kanban boards at the beggining of the project.
+
 Back-end kanban:
 [Kanban board image](./readme-images/154285321-34ae9394-876a-46c3-b42a-cb27dabbbf6e.jpg)
 
